@@ -4,84 +4,84 @@ smartshop={
 }
 
 smartshop.showform=function(pos,player,re)
-  if not pos or not player then
-    return -- added to catch nil pos or player crash
-  end
-  local meta = minetest.get_meta(pos)
-  local mode = meta:get_int("type")
-  local inv = meta:get_inventory()
-  local gui = ""
-  local spos = pos.x .. "," .. pos.y .. "," .. pos.z
-  local owner = meta:get_string("owner") == player:get_player_name()
-  if re then owner=false end
-  smartshop.user[player:get_player_name()]=pos
-  if owner or minetest.check_player_privs(player:get_player_name(), {server=true}) and not re then
-    gui=""
-    .."size[8,10]"
-    .."button_exit[6,0;1.7,1;customer;Customer]"
-    .."label[0,0.2;Item:]"
-    .."label[0,1.2;Price:]"
-    .."list[nodemeta:" .. spos .. ";give1;2,0;1,1;]"
-    .."list[nodemeta:" .. spos .. ";pay1;2,1;1,1;]"
-    .."list[nodemeta:" .. spos .. ";give2;3,0;1,1;]"
-    .."list[nodemeta:" .. spos .. ";pay2;3,1;1,1;]"
-    .."list[nodemeta:" .. spos .. ";give3;4,0;1,1;]"
-    .."list[nodemeta:" .. spos .. ";pay3;4,1;1,1;]"
-    .."list[nodemeta:" .. spos .. ";give4;5,0;1,1;]"
-    .."list[nodemeta:" .. spos .. ";pay4;5,1;1,1;]"
-    if mode==1 then
-      gui=gui.."list[nodemeta:" .. spos .. ";main;0,2;8,4;]"
-    else
-      gui=gui.."label[0.5,3;Unlimited Stock]"
-    end
-    gui=gui
-    .."list[current_player;main;0,6.2;8,4;]"
-    .."listring[nodemeta:" .. spos .. ";main]"
-    .."listring[current_player;main]"
-  else
-    gui=""
-    .."size[8,6]"
-    .."list[current_player;main;0,2.2;8,4;]"
-    .."label[0,0.2;Item:]"
-    .."label[0,1.2;Price:]"
-    .."list[nodemeta:" .. spos .. ";give1;2,0;1,1;]"
-    .."item_image_button[2,1;1,1;".. inv:get_stack("pay1",1):get_name() ..
-    ";buy1;\n\n\b\b\b\b\b" .. inv:get_stack("pay1",1):get_count() .."]"
-    .."list[nodemeta:" .. spos .. ";give2;3,0;1,1;]"
-    .."item_image_button[3,1;1,1;".. inv:get_stack("pay2",1):get_name() ..
-    ";buy2;\n\n\b\b\b\b\b" .. inv:get_stack("pay2",1):get_count() .."]"
-    .."list[nodemeta:" .. spos .. ";give3;4,0;1,1;]"
-    .."item_image_button[4,1;1,1;".. inv:get_stack("pay3",1):get_name() ..
-    ";buy3;\n\n\b\b\b\b\b" .. inv:get_stack("pay3",1):get_count() .."]"
-    .."list[nodemeta:" .. spos .. ";give4;5,0;1,1;]"
-    .."item_image_button[5,1;1,1;".. inv:get_stack("pay4",1):get_name() ..
-    ";buy4;\n\n\b\b\b\b\b" .. inv:get_stack("pay4",1):get_count() .."]"
-  end
+	  if not pos or not player then
+		return -- added to catch nil pos or player crash
+	  end
+	  local meta = minetest.get_meta(pos)
+	  local mode = meta:get_int("type")
+	  local inv = meta:get_inventory()
+	  local gui = ""
+	  local spos = pos.x .. "," .. pos.y .. "," .. pos.z
+	  local owner = meta:get_string("owner") == player:get_player_name()
+	  if re then owner=false end
+	  smartshop.user[player:get_player_name()]=pos
+	  if owner or minetest.check_player_privs(player:get_player_name(), {server=true}) and not re then
+		gui=""
+    	.."size[8,10]"
+    	.."button_exit[6,0;1.7,1;customer;Customer]"
+    	.."label[0,0.2;Item:]"
+    	.."label[0,1.2;Price:]"
+    	.."list[nodemeta:" .. spos .. ";give1;2,0;1,1;]"
+    	.."list[nodemeta:" .. spos .. ";pay1;2,1;1,1;]"
+    	.."list[nodemeta:" .. spos .. ";give2;3,0;1,1;]"
+    	.."list[nodemeta:" .. spos .. ";pay2;3,1;1,1;]"
+    	.."list[nodemeta:" .. spos .. ";give3;4,0;1,1;]"
+    	.."list[nodemeta:" .. spos .. ";pay3;4,1;1,1;]"
+    	.."list[nodemeta:" .. spos .. ";give4;5,0;1,1;]"
+    	.."list[nodemeta:" .. spos .. ";pay4;5,1;1,1;]"
+    	if mode==1 then
+      		gui=gui.."list[nodemeta:" .. spos .. ";main;0,2;8,4;]"
+    	else
+      		gui=gui.."label[0.5,3;Unlimited Stock]"
+    	end
+		gui=gui
+    	.."list[current_player;main;0,6.2;8,4;]"
+    	.."listring[nodemeta:" .. spos .. ";main]"
+    	.."listring[current_player;main]"
+	else
+    	gui=""
+    	.."size[8,6]"
+    	.."list[current_player;main;0,2.2;8,4;]"
+    	.."label[0,0.2;Item:]"
+    	.."label[0,1.2;Price:]"
+    	.."list[nodemeta:" .. spos .. ";give1;2,0;1,1;]"
+    	.."item_image_button[2,1;1,1;".. inv:get_stack("pay1",1):get_name() ..
+    	";buy1;\n\n\b\b\b\b\b" .. inv:get_stack("pay1",1):get_count() .."]"
+    	.."list[nodemeta:" .. spos .. ";give2;3,0;1,1;]"
+    	.."item_image_button[3,1;1,1;".. inv:get_stack("pay2",1):get_name() ..
+    	";buy2;\n\n\b\b\b\b\b" .. inv:get_stack("pay2",1):get_count() .."]"
+    	.."list[nodemeta:" .. spos .. ";give3;4,0;1,1;]"
+    	.."item_image_button[4,1;1,1;".. inv:get_stack("pay3",1):get_name() ..
+    	";buy3;\n\n\b\b\b\b\b" .. inv:get_stack("pay3",1):get_count() .."]"
+    	.."list[nodemeta:" .. spos .. ";give4;5,0;1,1;]"
+    	.."item_image_button[5,1;1,1;".. inv:get_stack("pay4",1):get_name() ..
+    	";buy4;\n\n\b\b\b\b\b" .. inv:get_stack("pay4",1):get_count() .."]"
+	end
 
-    return minetest.show_formspec(player:get_player_name(), "smartshop.showform",gui)
+		return minetest.show_formspec(player:get_player_name(), "smartshop.showform",gui)
 
 end
 
 minetest.register_on_player_receive_fields(function(player, form, pressed)
-      if form == "smartshop.showform" then
-        if pressed.customer then
-          return smartshop.showform(smartshop.user[player:get_player_name()],player,true)
-        elseif not pressed.quit then
-          local n=1
-          for i=1,4,1 do
-            n=i
-            if pressed["buy" .. i] then break end
-          end
-          local pos=smartshop.user[player:get_player_name()]
-          -- check we have data to prevent server crash
-          if not pos then return end
-          local meta = minetest.get_meta(pos)
-          local mode = meta:get_int("type")
-          local inv = meta:get_inventory()
-          local pinv = player:get_inventory()
-          local pname = player:get_player_name()
-          if pressed["buy" .. n] then
-            local name = inv:get_stack("give" .. n,1):get_name()
+	if form == "smartshop.showform" then
+		if pressed.customer then
+			  return smartshop.showform(smartshop.user[player:get_player_name()],player,true)
+		elseif not pressed.quit then
+		  local n=1
+		  for i=1,4,1 do
+			n=i
+			if pressed["buy" .. i] then break end
+		end
+		local pos=smartshop.user[player:get_player_name()]
+        -- check we have data to prevent server crash
+		if not pos then return end
+        local meta = minetest.get_meta(pos)
+        local mode = meta:get_int("type")
+        local inv = meta:get_inventory()
+        local pinv = player:get_inventory()
+        local pname = player:get_player_name()
+        if pressed["buy" .. n] then
+           	local name = inv:get_stack("give" .. n,1):get_name()
             local stack=name .." ".. inv:get_stack("give" .. n,1):get_count()
             local pay=inv:get_stack("pay" .. n,1):get_name() .." ".. inv:get_stack("pay" .. n,1):get_count()
             if name~="" then
@@ -158,12 +158,13 @@ minetest.register_node("smartshop:shop", {
           local name = player:get_player_name()
           local owner = minetest.get_meta(pos):get_string("owner")
           if owner == name or minetest.check_player_privs(name, {server=true}) then
-			  if string.find(stack:get_name(), "admin") ~= nil or
-			  string.find(stack:get_name(), "shop") ~= nil then return 0 end
-              minetest.log("action", name.." puts "..stack:get_name()
-              .." "..stack:get_count().." into "..owner.." shop @ "
-			  ..minetest.pos_to_string(pos))
-              return stack:get_count()
+			if string.find(stack:get_name(), "admin") ~= nil or
+			string.find(stack:get_name(), "shop") ~= nil then return 0 end
+			if stack:count() == 1 and stack:get_wear() > 0 then return 0 end	
+            minetest.log("action", name.." puts "..stack:get_name()
+            .." "..stack:get_count().." into "..owner.." shop @ "
+			..minetest.pos_to_string(pos))
+            return stack:get_count()
           end
           return 0
       end,
