@@ -85,7 +85,8 @@ smartshop.receive_fields = function(player,pressed)
 				local pay = inv:get_stack("pay" .. n,1):get_name() .." ".. inv:get_stack("pay" .. n,1):get_count()
 				if name ~= "" then
 					if type == 1 and inv:room_for_item("main", pay) == false then
-						minetest.chat_send_player(pname, "Error: The owners stock is full, cant receive, exchange aborted.")
+						minetest.chat_send_player(pname,
+						"Error: The owners stock is full, cant receive, exchange aborted.")
 						return
 					end
 					if type == 1 and sellall == 1 and inv:contains_item("main", stack) == false and
