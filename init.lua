@@ -107,8 +107,14 @@ smartshop.receive_fields = function(player,pressed)
 						"Error: Your inventory is full, exchange aborted.")
 						return
 					end
-					pinv:remove_item("main", pay)
-					pinv:add_item("main", stack)
+					local item = pinv:remove_item("main", pay)
+			  		if item:get_count() == 1 and item:get_wear() > 0 then
+						-- worn tool give it them back!
+				  		pinv:add_item("main", item)
+				  		return
+			  		else
+				 		pinv:add_item("main", stack)
+			  		end
 					if type == 1 then 
 						inv:remove_item("main", stack)
 						inv:add_item("main", pay)
@@ -379,7 +385,7 @@ on_rightclick = function(pos, node, player, itemstack, pointed_thing)
 allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		if minetest.get_meta(pos):get_string("owner") == player:get_player_name() or
 		minetest.check_player_privs(player:get_player_name(), {protection_bypass=true}) then
-			-- prevent tool repair by the owner!
+			-- no worn tools!
 			if stack:get_count() == 1 and stack:get_wear() > 0 then return 0 end
 			return stack:get_count()
 		end
