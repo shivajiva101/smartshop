@@ -160,7 +160,7 @@ minetest.register_node("smartshop:shop", {
           if owner == name or minetest.check_player_privs(name, {server=true}) then
 			if string.find(stack:get_name(), "admin") ~= nil or
 			string.find(stack:get_name(), "shop") ~= nil then return 0 end
-			if stack:count() == 1 and stack:get_wear() > 0 then return 0 end	
+			if stack:get_count() == 1 and stack:get_wear() > 0 then return 0 end	
             minetest.log("action", name.." puts "..stack:get_name()
             .." "..stack:get_count().." into "..owner.." shop @ "
 			..minetest.pos_to_string(pos))
